@@ -14,10 +14,10 @@ app.Run(async (context) =>
 {
     context.Response.ContentType = "text/html; charset=utf-8";
     var stringBuilder = new System.Text.StringBuilder("<table>");
-    Parse<string[]> parser;
+    Parse <Order> parser;
 
 
-    parser = new Parse<string[]>(
+    parser = new Parse <Order>(
                         new HabraParser()
                     );
 

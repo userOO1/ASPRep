@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o/D5IqgeqUA=",
+  "dgSpecHash": "gOyAYGLTLWw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPParser\\ASPParser.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\ASPParser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\anglesharp\\1.1.2\\anglesharp.1.1.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.ambientmetadata.application\\8.10.0\\microsoft.extensions.ambientmetadata.application.8.10.0.nupkg.sha512",

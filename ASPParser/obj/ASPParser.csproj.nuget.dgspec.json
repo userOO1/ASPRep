@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPParser\\ASPParser.csproj": {}
+    "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\ASPParser.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPParser\\ASPParser.csproj": {
+    "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\ASPParser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPParser\\ASPParser.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\ASPParser.csproj",
         "projectName": "ASPParser",
-        "projectPath": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPParser\\ASPParser.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\ASPParser.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPParser\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
