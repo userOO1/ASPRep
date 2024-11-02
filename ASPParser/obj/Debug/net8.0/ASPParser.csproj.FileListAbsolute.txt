@@ -158,3 +158,4 @@ C:\Users\user\Desktop\я\it\C#\ASP.NET\ASPRep\ASPParser\obj\Debug\net8.0\refint\
 C:\Users\user\Desktop\я\it\C#\ASP.NET\ASPRep\ASPParser\obj\Debug\net8.0\ASPParser.pdb
 C:\Users\user\Desktop\я\it\C#\ASP.NET\ASPRep\ASPParser\obj\Debug\net8.0\ASPParser.genruntimeconfig.cache
 C:\Users\user\Desktop\я\it\C#\ASP.NET\ASPRep\ASPParser\obj\Debug\net8.0\ref\ASPParser.dll
+C:\Users\user\Desktop\я\it\C#\ASP.NET\ASPRep\ASPParser\bin\Debug\net8.0\ASPParser.staticwebassets.runtime.json

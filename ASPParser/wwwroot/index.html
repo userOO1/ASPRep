@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title></title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Цена</th>
+                <th scope="col">ФЗ</th>
+                <th scope="col">Заказчик</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        // Получение всех пользователей
+        async function getOrders() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/parse", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const parse = await response.json();
+                const rows = document.querySelector("tbody");
+                // добавляем полученные элементы в таблицу
+                parse.forEach(orders => orders.forEach(order => rows.append(row(order))));
+
+            }
+        }
+        function row(order) {
+
+            const tr = document.createElement("tr");
+
+
+            const numberTd = document.createElement("td");
+            numberTd.append(order.itemsNumber);
+            tr.append(numberTd);
+
+            const objectTd = document.createElement("td");
+            objectTd.append(order.itemsObject);
+            tr.append(objectTd);
+
+            const priceTd = document.createElement("td");
+            priceTd.append(order.itemsPrice);
+            tr.append(priceTd);
+
+            const fzTd = document.createElement("td");
+            fzTd.append(order.itemsFz);
+            tr.append(fzTd);
+
+            const customerTd = document.createElement("td");
+            customerTd.append(order.itemsCustomer);
+            tr.append(customerTd);
+
+            return tr;
+        }
+
+        // загрузка пользователей
+        getOrders();
+    </script>
+</body>
+</html>

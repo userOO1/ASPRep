@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "zmlD8rEEysonZffBxGcuGARrVz1y3UPg6K/qj9DdeyI=",
+  "Hash": "YtGxqnvni1Cv8Tv/uWbQA8QJMpfy5bnk6jnYJCwZ2xk=",
   "Source": "ASPParser",
   "BasePath": "_content/ASPParser",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ASPParser\\wwwroot",
+      "Source": "ASPParser",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\wwwroot\\",
+      "BasePath": "_content/ASPParser",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\wwwroot\\index.html",
+      "SourceId": "ASPParser",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\я\\it\\C#\\ASP.NET\\ASPRep\\ASPParser\\wwwroot\\",
+      "BasePath": "_content/ASPParser",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
 }

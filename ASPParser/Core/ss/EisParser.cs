@@ -8,7 +8,7 @@ using AngleSharp.Text;
 namespace Parser.Core.ss
 {
     
-    class HabraParser : Order
+    class HabraParser : IParser<List <Order>>
     {
         
         public List <Order> Parse(IHtmlDocument document)
@@ -23,21 +23,27 @@ namespace Parser.Core.ss
             
             for (int i = 0; i < itemsFz.Count();i++)
             {
+                List<Order> l = new List<Order>();
+
                 byte[] utf8BytesIP = Encoding.UTF8.GetBytes(itemsPrice.ElementAt(i).TextContent.Trim());
                 var EncodingIP = Encoding.UTF8.GetString(utf8BytesIP);
 
-                list[i].ItemsNumber = itemsNumber.ElementAt(i).TextContent.Trim();
-                list[i].ItemsObject = itemsObject.ElementAt(i).TextContent.Trim();
-                list[i].ItemsPrice = EncodingIP;
-                list[i].ItemsFz = itemsFz.ElementAt(i).TextContent.Trim();
-                list[i].ItemsCustomer = itemsCustomer.ElementAt(i).TextContent.Trim();
-                //list.Add(itemsNumber.ElementAt(i).TextContent.Trim());
-                //list.Add(itemsObject.ElementAt(i).TextContent.Trim());
+                
+                var ItemsNumber = itemsNumber.ElementAt(i).TextContent.Trim();
+                string ItemsObject= "";
+                if (itemsObject != null && itemsObject.Count() > 0)
+                {
+                    if (i >= 0 && i < itemsObject.Count())
+                    {
+                        ItemsObject = itemsObject.ElementAt(i).TextContent.Trim();
+                    }
+                }
 
-                //list.Add(EncodingIP);
-                //list.Add(itemsFz.ElementAt(i).TextContent.Trim());
-                //list.Add(itemsCustomer.ElementAt(i).TextContent.Trim());
-                //list.Add("-------------------------------------");
+                var ItemsPrice = EncodingIP;
+                var ItemsFz = itemsFz.ElementAt(i).TextContent.Trim();
+                var ItemsCustomer = itemsCustomer.ElementAt(i).TextContent.Trim();
+
+                list.Add(new Order() {ItemsNumber=ItemsNumber, ItemsObject = ItemsObject, ItemsPrice = ItemsPrice , ItemsFz = ItemsFz , ItemsCustomer = ItemsCustomer });                
 
             }
 
