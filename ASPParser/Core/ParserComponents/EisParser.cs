@@ -8,7 +8,7 @@ using AngleSharp.Text;
 namespace Parser.Core.ss
 {
     
-    class HabraParser : IParser<List <Order>>
+    class EisParser : IParser<List <Order>>
     {
         
         public List <Order> Parse(IHtmlDocument document)
@@ -23,31 +23,35 @@ namespace Parser.Core.ss
             
             for (int i = 0; i < itemsFz.Count();i++)
             {
-                List<Order> l = new List<Order>();
-
+                
                 byte[] utf8BytesIP = Encoding.UTF8.GetBytes(itemsPrice.ElementAt(i).TextContent.Trim());
                 var EncodingIP = Encoding.UTF8.GetString(utf8BytesIP);
 
                 
                 var ItemsNumber = itemsNumber.ElementAt(i).TextContent.Trim();
-                string ItemsObject= "";
-                if (itemsObject != null && itemsObject.Count() > 0)
+                string ItemsObject = string.Empty;
+                
+                if (itemsObject.Any(item => item != null) && i < itemsObject.Count())
                 {
-                    if (i >= 0 && i < itemsObject.Count())
-                    {
-                        ItemsObject = itemsObject.ElementAt(i).TextContent.Trim();
-                    }
+                    ItemsObject = itemsObject.ElementAt(i).TextContent.Trim();
                 }
+                
+                
 
                 var ItemsPrice = EncodingIP;
                 var ItemsFz = itemsFz.ElementAt(i).TextContent.Trim();
                 var ItemsCustomer = itemsCustomer.ElementAt(i).TextContent.Trim();
 
-                list.Add(new Order() {ItemsNumber=ItemsNumber, ItemsObject = ItemsObject, ItemsPrice = ItemsPrice , ItemsFz = ItemsFz , ItemsCustomer = ItemsCustomer });                
+                list.Add(new Order() {
+                    ItemsNumber=ItemsNumber,
+                    ItemsObject = ItemsObject,
+                    ItemsPrice = ItemsPrice ,
+                    ItemsFz = ItemsFz ,
+                    ItemsCustomer = ItemsCustomer });                
 
             }
 
-            // return list.ToArray();
+            
             return list ;
         }
 
