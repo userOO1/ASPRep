@@ -7,7 +7,7 @@ using AngleSharp.Html.Parser;
 
 namespace Parser.Core
 {
-    class Parse<T> where T : class
+    class Parsing<T> where T : class
     {
         private IParser<T> ee_parser;                
 
@@ -32,7 +32,7 @@ namespace Parser.Core
         #endregion
 
         
-        public Parse(IParser<T> parser)
+        public Parsing(IParser<T> parser)
         {
             ee_parser = parser;
         }

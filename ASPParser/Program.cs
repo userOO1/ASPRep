@@ -6,44 +6,19 @@ using System.Reflection.PortableExecutable;
 var builder = WebApplication.CreateBuilder();
 var app = builder.Build();
 app.UseDeveloperExceptionPage();
-
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseRouting();
+Parsing<List<Order>> parser;
 
 
-app.Run(async (context) =>
-{
-    context.Response.ContentType = "text/html; charset=utf-8";
-    var stringBuilder = new System.Text.StringBuilder("<table>");
-    Parse<string[]> parser;
+parser = new Parsing<List<Order>>(
+                    new EisParser()
+                );
 
 
-    parser = new Parse<string[]>(
-                        new HabraParser()
-                    );
+List<List<Order>> parse = await parser.Worker();
+app.MapGet("/api/parse", () => parse);
 
-
-    var parse = await parser.Worker();
-    int count = 0;
-
-    for (int page = 0; page < parse.Count; page++)
-    {
-        stringBuilder.Append("<tr>");
-        foreach (var s in parse[page])
-        {
-            count++;
-            stringBuilder.Append($"<td>{s}</td>");
-            if (count%4==0 & parse[page].Length!=count)
-            {
-                stringBuilder.Append("</tr><tr>");
-            }
-            
-            
-        }
-        stringBuilder.Append("</tr>");
-
-    }
-    stringBuilder.Append("</table>");
-    await context.Response.WriteAsync(stringBuilder.ToString());
-});
 
 app.Run();
