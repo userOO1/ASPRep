@@ -10,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Регистрация зависимостей
+// Регистрация EisParser как зависимости
+builder.Services.AddTransient<EisParser>();
 
+// Регистрация Parsing как зависимости реализации интерфейса IParsing
+builder.Services.AddTransient<IParsing<List<Order>>, Parsing<List<Order>>>();
 //builder.Services.AddScoped<IParsing<List<Order>>, Parsing<List<Order>>>(); // Регистрация Parsing
 
 builder.Services.AddControllers(); // Регистрация контроллеров

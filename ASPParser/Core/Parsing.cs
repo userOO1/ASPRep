@@ -1,58 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
 using ASPParser.Core;
+using Parser.Core.ss;
+
 
 namespace Parser.Core
 {
-    class Parsing<T>  where T : class
+    public class Parsing<T> : IParsing<T> where T : class
     {
-        private IParser<T> ee_parser;                
+        private readonly IParser<T> _parser; // Сделаем поле приватным и readonly
 
         #region Properties
 
-        public IParser<T> Parser
-        {
-            get
-            {
-                return ee_parser;
-            }
-            set
-            {
-                ee_parser = value;
-            }
-        }
-
-        
-
-        
+        // Сделаем свойство только для чтения, если установка не требуется
+        public IParser<T> Parser => _parser;
 
         #endregion
 
-        
+        // Конструктор
         public Parsing(IParser<T> parser)
         {
-            ee_parser = parser;
+            _parser = parser ?? throw new ArgumentNullException(nameof(parser)); // Проверка на null
         }
+
+        // Асинхронный метод для парсинга
         public async Task<List<T>> Worker()
         {
-            List<T> lines = new List<T>();
+            var lines = new List<T>();
             for (int i = 1; i <= 5; i++)
-            {                
-
+            {
                 var source = await HtmlLoader.GetSourceByPageId(i);
                 var domParser = new HtmlParser();
                 var document = await domParser.ParseDocumentAsync(source);
-                var result = ee_parser.Parse(document);
-                
-                lines.Add(result);
+                var result = _parser.Parse(document);
+
+                if (result != null) // Проверка на null
+                {
+                    lines.Add(result);
+                }
             }
             return lines;
         }
-
-        
     }
 }
