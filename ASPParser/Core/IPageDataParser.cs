@@ -2,7 +2,7 @@
 
 namespace ASPParser.Core
 {
-    public interface IParsing<T>
+    public interface IPageDataParser<T>
     {
         Task<List<T>> Worker();
     }

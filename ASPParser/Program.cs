@@ -7,11 +7,9 @@ using Parser.Core;
 var builder = WebApplication.CreateBuilder(args);
 
 // Добавляем необходимые сервисы
-
-
 // Регистрация зависимостей
 builder.Services.AddScoped<IParser<List<Order>>, EisParser>();
-builder.Services.AddScoped<IParsing<List<Order>>, Parsing<List<Order>>>(); // Регистрация обертки для парсинга
+builder.Services.AddScoped<IPageDataParser<List<Order>>, PageDataParser<List<Order>>>(); // Регистрация обертки для парсинга
 
 builder.Services.AddControllers(); // Регистрация контроллеров
 

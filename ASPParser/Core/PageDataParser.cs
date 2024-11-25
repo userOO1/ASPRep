@@ -8,7 +8,7 @@ using ASPParser.Core;
 
 namespace Parser.Core
 {
-    class Parsing<T> : IParsing<T> where T : class
+    class PageDataParser<T> : IPageDataParser<T> where T : class
     {
         private IParser<T> ee_parser;                
 
@@ -33,7 +33,7 @@ namespace Parser.Core
         #endregion
 
         
-        public Parsing(IParser<T> parser)
+        public PageDataParser(IParser<T> parser)
         {
             ee_parser = parser;
         }
