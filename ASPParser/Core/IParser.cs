@@ -8,7 +8,7 @@ using Parser.Core.ss;
 
 namespace Parser.Core
 {
-    public interface IParser<T> where T : class
+    interface IParser<T> where T : class
     {
         T Parse(IHtmlDocument document);
         

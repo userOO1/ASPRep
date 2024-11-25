@@ -28,7 +28,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Parser.Core.ss;
 using Parser.Core;
-using System.Collections.Generic;
 
 namespace ASPParser.Core.Controllers
 {
@@ -36,18 +35,17 @@ namespace ASPParser.Core.Controllers
     [Route("api/[controller]")]
     public class ParseController : ControllerBase
     {
-        private readonly IParsing<List<List<Order>>> _parser;
+        private readonly Parsing<List<Order>> _parser;
 
-        // Внедрение зависимости через конструктор
-        public ParseController(IParsing<List<List<Order>>> parser)
+        public ParseController()
         {
-            _parser = parser ?? throw new ArgumentNullException(nameof(parser));
+            _parser = new Parsing<List<Order>>(new EisParser());
         }
 
         [HttpGet]
         public async Task<ActionResult<List<List<Order>>>> GetParsedOrders()
         {
-            List < List < List < Order >>>  parse = await _parser.Worker();
+            List<List<Order>> parse = await _parser.Worker();
             return Ok(parse);
         }
     }

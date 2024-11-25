@@ -4,6 +4,6 @@ namespace ASPParser.Core
 {
     public interface IParsing<T>
     {
-        Task<List<T>> Worker();
+        Task<T> Worker();
     }
 }
