@@ -8,7 +8,7 @@ using ASPParser.Core;
 
 namespace Parser.Core
 {
-    class Parsing<T>  where T : class
+    class Parsing<T> : IParsing<T> where T : class
     {
         private IParser<T> ee_parser;                
 

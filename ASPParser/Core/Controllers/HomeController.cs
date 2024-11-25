@@ -35,11 +35,11 @@ namespace ASPParser.Core.Controllers
     [Route("api/[controller]")]
     public class ParseController : ControllerBase
     {
-        private readonly Parsing<List<Order>> _parser;
+        private readonly IParsing<List<Order>> _parser;
 
-        public ParseController()
+        public ParseController(IParsing<List<Order>> parser)
         {
-            _parser = new Parsing<List<Order>>(new EisParser());
+            _parser = parser;
         }
 
         [HttpGet]

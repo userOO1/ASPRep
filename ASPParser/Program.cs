@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Регистрация зависимостей
-
-//builder.Services.AddScoped<IParsing<List<Order>>, Parsing<List<Order>>>(); // Регистрация Parsing
+builder.Services.AddScoped<IParser<List<Order>>, EisParser>();
+builder.Services.AddScoped<IParsing<List<Order>>, Parsing<List<Order>>>(); // Регистрация обертки для парсинга
 
 builder.Services.AddControllers(); // Регистрация контроллеров
 
