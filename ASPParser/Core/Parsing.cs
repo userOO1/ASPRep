@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
+using ASPParser.Core;
 
 namespace Parser.Core
 {
-    class Parsing<T> where T : class
+    class Parsing<T>  where T : class
     {
         private IParser<T> ee_parser;                
 
@@ -53,7 +54,5 @@ namespace Parser.Core
         }
 
         
-        
-
     }
 }

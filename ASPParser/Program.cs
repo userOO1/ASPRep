@@ -1,24 +1,32 @@
+using ASPParser.Core;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Parser.Core.ss;
 using Parser.Core;
-using System.Reflection.PortableExecutable;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Добавляем необходимые сервисы
 
 
-var builder = WebApplication.CreateBuilder();
+// Регистрация зависимостей
+
+//builder.Services.AddScoped<IParsing<List<Order>>, Parsing<List<Order>>>(); // Регистрация Parsing
+
+builder.Services.AddControllers(); // Регистрация контроллеров
+
 var app = builder.Build();
+
 app.UseDeveloperExceptionPage();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseRouting();
-Parsing<List<Order>> parser;
 
-
-parser = new Parsing<List<Order>>(
-                    new EisParser()
-                );
-
-
-List<List<Order>> parse = await parser.Worker();
-app.MapGet("/api/parse", () => parse);
-
+// Добавляем маршрутизацию для контроллеров
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();
+

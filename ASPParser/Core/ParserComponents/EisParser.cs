@@ -20,7 +20,9 @@ namespace Parser.Core.ss
             var itemsObject = document.QuerySelectorAll("div").Where(item => item.ClassName != null && item.ClassName.Contains("registry-entry__body-value"));
             var itemsCustomer = document.QuerySelectorAll("div").Where(item => item.ClassName != null && item.ClassName.Contains("registry-entry__body-href"));
             var itemsNumber = document.QuerySelectorAll("div").Where(item => item.ClassName != null && item.ClassName.Contains("registry-entry__header-mid__number"));
-            
+
+            var items= document.QuerySelectorAll("div").Where(item => item.ClassName != null && item.ClassName.Contains("search-registry-entry-block box-shadow-search-input"));
+
             for (int i = 0; i < itemsFz.Count();i++)
             {
                 
