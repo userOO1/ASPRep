@@ -1,49 +1,32 @@
+using ASPParser.Core;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Parser.Core.ss;
 using Parser.Core;
-using System.Reflection.PortableExecutable;
+using Npgsql;
 
+var builder = WebApplication.CreateBuilder(args);
 
-var builder = WebApplication.CreateBuilder();
+// Добавляем необходимые сервисы
+// Регистрация зависимостей
+builder.Services.AddScoped<IParser<List<Order>>, EisParser>();
+builder.Services.AddScoped<IPageDataParser<List<Order>>, PageDataParser<List<Order>>>(); // Регистрация обертки для парсинга
+
+builder.Services.AddControllers(); // Регистрация контроллеров
+
 var app = builder.Build();
-app.UseDeveloperExceptionPage();
 
+app.UseDeveloperExceptionPage();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseRouting();
 
-
-app.Run(async (context) =>
+// Добавляем маршрутизацию для контроллеров
+app.UseEndpoints(endpoints =>
 {
-    context.Response.ContentType = "text/html; charset=utf-8";
-    var stringBuilder = new System.Text.StringBuilder("<table>");
-    Parse<string[]> parser;
-
-
-    parser = new Parse<string[]>(
-                        new HabraParser()
-                    );
-
-
-    var parse = await parser.Worker();
-    int count = 0;
-
-    for (int page = 0; page < parse.Count; page++)
-    {
-        stringBuilder.Append("<tr>");
-        foreach (var s in parse[page])
-        {
-            count++;
-            stringBuilder.Append($"<td>{s}</td>");
-            if (count%4==0 & parse[page].Length!=count)
-            {
-                stringBuilder.Append("</tr><tr>");
-            }
-            
-            
-        }
-        stringBuilder.Append("</tr>");
-
-    }
-    stringBuilder.Append("</table>");
-    await context.Response.WriteAsync(stringBuilder.ToString());
+    endpoints.MapControllers();
 });
 
 app.Run();
+
+
