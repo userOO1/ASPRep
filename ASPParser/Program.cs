@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Parser.Core.ss;
 using Parser.Core;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,4 +28,5 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
+
 

@@ -12,6 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <button id="apiButton" type="button" class="btn btn-success">Кнопка успеха</button>
+    <button id="getButton" type="button" class="btn btn-success">Обновить</button>
+    
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -26,6 +29,7 @@
         </tbody>
     </table>
     <script>
+        
         // Получение всех пользователей
         async function getOrders() {
             // отправляет запрос и получаем ответ
@@ -39,10 +43,25 @@
                 const parse = await response.json();
                 const rows = document.querySelector("tbody");
                 // добавляем полученные элементы в таблицу
-                parse.forEach(orders => orders.forEach(order => rows.append(row(order))));
-
+                parse.forEach(order => rows.append(row(order)));
             }
+            
         }
+        document.getElementById('getButton').addEventListener('click', async () => {
+            console.log("парсинг");
+            const response = await fetch("/api/parse", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const parse = await response.json();
+                const rows = document.querySelector("tbody");
+                // добавляем полученные элементы в таблицу
+                parse.forEach(order => rows.append(row(order)));
+            }
+        });
         function row(order) {
 
             const tr = document.createElement("tr");
@@ -70,7 +89,17 @@
 
             return tr;
         }
-
+        document.getElementById('apiButton').addEventListener('click', async () => {
+            console.log("парсинг");
+            const response = await fetch("/api/parse", {
+                method: "POST",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                console.log("кайфы");
+            }
+        });
         // загрузка пользователей
         getOrders();
     </script>

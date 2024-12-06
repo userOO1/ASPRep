@@ -4,6 +4,8 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using AngleSharp.Html.Dom;
 using AngleSharp.Text;
+using ASPParser.Core.DB_connection;
+using Microsoft.EntityFrameworkCore;
 
 namespace Parser.Core.ss
 {
@@ -49,11 +51,30 @@ namespace Parser.Core.ss
                     ItemsObject = ItemsObject,
                     ItemsPrice = ItemsPrice ,
                     ItemsFz = ItemsFz ,
-                    ItemsCustomer = ItemsCustomer });                
+                    ItemsCustomer = ItemsCustomer });
+                using (var context = new TestContext())
+                {
+                    var entity = new OrderTest
+                    {
+                        ItemsNumber = ItemsNumber,
+                        ItemsObject = ItemsObject,
+                        ItemsPrice = ItemsPrice,
+                        ItemsFz = ItemsFz,
+                        ItemsCustomer = ItemsCustomer
+                    };
+
+                    // Используем FlexLabs для Upsert
+                    context.Orders
+                        .Upsert(entity)
+                        .On(u => u.ItemsNumber) // Указываем, по какому полю будет происходить проверка                                               
+                        .Run();
+
+                    context.SaveChangesAsync();
+                    
+                }
 
             }
 
-            
             return list ;
         }
 

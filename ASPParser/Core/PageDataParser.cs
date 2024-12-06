@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
 using ASPParser.Core;
+using ASPParser.Core.DB_connection;
 
 namespace Parser.Core
 {
@@ -49,6 +50,7 @@ namespace Parser.Core
                 var result = ee_parser.Parse(document);
                 
                 lines.Add(result);
+                
             }
             return lines;
         }

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Parser.Core.ss;
 using Parser.Core;
+using ASPParser.Core.DB_connection;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASPParser.Core.Controllers
 {
@@ -15,12 +17,24 @@ namespace ASPParser.Core.Controllers
         {
             _parser = parser;
         }
-
+        [HttpPost]
+        public async Task<ActionResult<List<List<Order>>>> SaveParsedOrders()
+        {
+            List<List<Order>> parse = await _parser.Worker();
+            return Ok(parse);
+        }
+        
         [HttpGet]
         public async Task<ActionResult<List<List<Order>>>> GetParsedOrders()
         {
             List<List<Order>> parse = await _parser.Worker();
-            return Ok(parse);
+            using (var context = new TestContext())
+            {
+                // Получение всех записей из таблицы Orders
+                var orders = await context.Orders.ToListAsync();
+
+                return Ok(orders);
+            }
         }
     }
 }
